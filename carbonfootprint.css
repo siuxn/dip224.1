@@ -1,0 +1,66 @@
+/* Apply a maximum width for your form and center it */
+form {
+    max-width: 600px; /* Set a max-width for form */
+    margin: 0 auto; /* Center the form in the page */
+    background: #fff; /* Background color for form */
+    padding: 20px; /* Padding inside the form */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow around the form */
+    border-radius: 8px; /* Rounded corners for form */
+}
+
+/* Center the form headings */
+h1, h2 {
+    text-align: center;
+    font-weight: normal;
+    color: #333;
+}
+
+/* Style the input fields */
+input[type='email'], select {
+    width: 100%; /* Full width */
+    padding: 10px; /* Padding inside inputs */
+    margin: 10px 0; /* Margin for spacing */
+    border: 1px solid #ccc; /* Border around inputs */
+    border-radius: 4px; /* Rounded corners for inputs */
+}
+
+/* Style the submit button */
+input[type='submit'] {
+    background-color: #5cb85c; /* Green background */
+    color: white; /* White text color */
+    border: none; /* No border */
+    padding: 15px 20px; /* Padding inside the button */
+    text-transform: uppercase; /* Uppercase text */
+    letter-spacing: 1px; /* Spacing between letters */
+    font-weight: bold; /* Bold font weight */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background 0.3s ease; /* Transition for background color */
+    border-radius: 4px; /* Rounded corners for button */
+}
+
+/* Change background color on hover */
+input[type='submit']:hover {
+    background-color: #449d44; /* Darker green background on hover */
+}
+
+/* Add space to the top of the sections for better visual spacing */
+.section {
+    margin-top: 20px;
+}
+
+/* Use a media query to ensure that the design adapts to smaller screens */
+@media only screen and (max-width: 767px) {
+    h1, h2 {
+        font-size: 18px; /* Smaller font size on small screens */
+    }
+
+    /* Full-width inputs on small screens */
+    input[type='email'], select {
+        width: calc(100% - 20px); /* Full width minus padding */
+    }
+
+    /* Adjust form padding on smaller screens */
+    form {
+        padding: 10px;
+    }
+}

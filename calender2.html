@@ -1,0 +1,781 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+    background-color: white;
+}
+
+ul {
+    list-style-type: none;
+    text-align: center;
+    font-family: Verdana, sans-serif;
+}
+
+li:not(:first-child) {
+    cursor: pointer;
+}
+
+.calender {
+    width: 74%;
+    box-shadow: 0px 2px 4px rgba(0,0,0,.5), 2px 2px 4px rgba(0,0,0,.5); /* Apply shadow to both left and right sides of calender */
+    position: absolute;
+    top: 150px;
+    right: 320px;
+    left: 10px;
+    bottom: -10px; 
+	background-color: white;
+    
+}
+
+.days li {
+    height: calc(400px / 6); /* Distribute the height evenly across all days */
+    line-height: calc(200px / 6); 
+}
+
+.calender .month {
+	background-color: whitesmoke;
+    padding: 20px;
+    color: white;
+    width: 90;
+    position: relative;
+    list-style-type: none;
+	margin-left: auto;
+}
+
+.calender .month .next,
+.calender .month .prev {
+    position: absolute;
+    top: calc(50% - 15px);
+    cursor: pointer;
+    padding: 5px;
+    display: block;
+}
+
+.calender .month .prev {
+    left: 10px;
+}
+
+.calender .month .next {
+    right: 10px;
+}
+
+.calender .month .next:hover,
+.calender .month .prev:hover {
+    background-color: rgba(0,0,0,.2);
+}
+
+.month h1 {
+    font-family: Arial, sans-serif; /* Change the font family */
+    color: white; /* Change the color */
+    font-weight: bolder;
+}
+
+.month h2 {
+    font-family: Arial, sans-serif; /* Change the font family */
+    color: white; /* Change the color */
+    font-weight: bold;
+}
+
+.calender .weeks {
+    display: flex;
+	margin-left: auto;
+
+}
+
+.calender .weeks li {
+    font-family: sans-serif;
+    background-color:  #bdc3c7;
+    color: rgb(0, 0, 0);
+    flex: 1;
+    opacity: .5;
+    position: relative;
+    animation: motion 2s;
+    padding: 10px; 
+    list-style-type: none;
+	margin-left: auto;
+}
+
+.calender .weeks li:hover {
+    background-color: rgba(0,0,0,.2);
+}
+
+.calender .days {
+    display: flex;
+    flex-wrap: wrap;
+	margin-left: auto;
+}
+
+.calender .days li {
+    font-family: sans-serif;
+    flex-basis: calc(100% / 7);
+    padding: 10px 0;
+    opacity: .7;
+    background-color: #bdc3c7;
+    list-style-type: none;
+    color: rgb(75, 71, 71);
+}
+  
+  .calender .days li:hover{
+	background-color: rgba(255, 255, 255, 0.1);
+	color: white
+}
+  
+
+
+
+.Event-List-header{
+    padding-left: 50px;
+	font-family:'Times New Roman', Times, serif;
+    font-weight: bold;
+    color:white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+
+}
+
+
+.filter_section {
+	background-color: rgba(245, 245, 245, 0.797);
+}
+
+
+
+.event-list {
+	transform : translate(380%, 18%);
+	background-color: #746451; 
+	width: 20%;
+	height: 800px;
+	margin-left: 10px;
+	border-radius: 10px;
+    box-shadow: 0px 2px 4px rgba(0,0,0,.5)
+	
+}
+
+.list-events{
+	margin: 20px;
+	background-color:white; 
+	width: 85%;
+	height: 500px;
+	justify-content: center;
+	overflow-y: auto;
+	padding: 10px;
+	border-radius: 5px;
+
+}
+
+
+
+
+#searchInput{
+	position: relative; /* Set position relative for button */
+    background-color: rgb(252, 252, 252);
+    height: 40px;
+    box-shadow: #34495E 10px;
+    font-size: 1em;
+    padding: 10px 15px;
+    border: 1px solid rgb(118, 117, 117);
+    border-radius: 20px;
+    cursor: pointer;
+    width: 90%;
+    text-align: center;
+}
+
+.search-input-container{
+	padding-left: 15px;
+
+}
+
+.event-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: red;
+    border-radius: 50%; /* Makes the dot circular */
+    margin-left: 4px; 
+}
+
+.event-item button {
+    background-color: #cbcbcb; 
+    color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 50%;
+} 
+
+/* Style for the registered button */
+.event-item button.registered {
+	background-color: #4CAF50; 
+	color: white;
+    
+}
+
+
+.modal {
+	transform:translate(50%,50%);
+    
+
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 1400px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 999; /* Ensure overlay is above other content */
+}
+
+
+
+        </style>
+        <title>Calender</title>
+        <link rel="stylesheet" href="calender.css">
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato%3A100%2C100italic%2C300%2C300italic%2Cregular%2Citalic%2C700%2C700italic%2C900%2C900italic&amp;subset=latin&amp;' type='text/css' media='all' />
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Noto+Sans%3Aregular%2Citalic%2C700%2C700italic&amp;subset=greek%2Ccyrillic-ext%2Ccyrillic%2Clatin%2Clatin-ext%2Cvietnamese%2Cgreek-ext&amp;' type='text/css' media='all' />
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Merriweather%3A300%2C300italic%2Cregular%2Citalic%2C700%2C700italic%2C900%2C900italic&amp;subset=latin%2Clatin-ext&amp;' type='text/css' media='all' />
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Mystery+Quest%3Aregular&amp;subset=latin%2Clatin-ext&amp;' type='text/css' media='all' />
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+            <link rel='stylesheet' href='css/style.css' type='text/css' media='all' />
+            <link rel='stylesheet' href='plugins/superfish/css/superfish.css' type='text/css' media='all' />
+            <link rel='stylesheet' href='plugins/dl-menu/component.css' type='text/css' media='all' />
+            <link rel='stylesheet' href='plugins/font-awesome-new/css/font-awesome.min.css' type='text/css' media='all' />
+            <link rel='stylesheet' href='plugins/elegant-font/style.css' type='text/css' media='all' />
+            <link rel='stylesheet' href='plugins/fancybox/jquery.fancybox.css' type='text/css' media='all' />
+            <link rel='stylesheet' href='plugins/flexslider/flexslider.css' type='text/css' media='all' />
+            <link rel='stylesheet' href='css/style-responsive.css' type='text/css' media='all' />
+            <link rel='stylesheet' href='css/style-custom.css' type='text/css' media='all' />
+            <link rel='stylesheet' href='plugins/masterslider/public/assets/css/masterslider.main.css' type='text/css' media='all' />
+            <link rel='stylesheet' href='css/master-custom.css' type='text/css' media='all' />
+
+
+    </head>
+
+    <body data-rsssl=1 class="home page-template-default page page-id-5680 _masterslider _msp_version_3.2.7 woocommerce-no-js">
+        <div class="body-wrapper  float-menu" data-home="https://demo.goodlayers.com/greennature/">
+        <header class="greennature-header-wrapper header-style-5-wrapper greennature-header-with-top-bar">
+                <!-- top navigation -->
+                <div class="top-navigation-wrapper">
+                    <div class="top-navigation-container container">
+                        <div class="top-navigation-left">
+                            <div class="top-navigation-left-text">
+                                Phone : +1800-222-3333      Email : contact@yourdomain.com </div>
+                        </div>
+                        <div class="top-navigation-right">
+                            <div class="top-social-wrapper">
+                                <div class="social-icon">
+                                    <a href="#" target="_blank">
+                                        <i class="fa fa-facebook"></i></a>
+                                </div>
+                                <div class="social-icon">
+                                    <a href="#" target="_blank">
+                                        <i class="fa fa-flickr"></i></a>
+                                </div>
+                                <div class="social-icon">
+                                    <a href="#" target="_blank">
+                                        <i class="fa fa-linkedin"></i></a>
+                                </div>
+                                <div class="social-icon">
+                                    <a href="#" target="_blank">
+                                        <i class="fa fa-pinterest-p"></i></a>
+                                </div>
+                                <div class="social-icon">
+                                    <a href="#" target="_blank">
+                                        <i class="fa fa-tumblr"></i></a>
+                                </div>
+                                <div class="social-icon">
+                                    <a href="#" target="_blank">
+                                        <i class="fa fa-twitter"></i></a>
+                                </div>
+                                <div class="social-icon">
+                                    <a href="#" target="_blank">
+                                        <i class="fa fa-vimeo"></i></a>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div id="greennature-header-substitute"></div>
+                <div class="greennature-header-inner header-inner-header-style-5">
+                    <div class="greennature-header-container container">
+                        <div class="greennature-header-inner-overlay"></div>
+                        <!-- logo -->
+                        <div class="greennature-logo">
+                            <div class="greennature-logo-inner">
+                                <a href="index-2.html">
+                                    <img src="images/logo.png" alt="" /> </a>
+                            </div>
+                            <div class="greennature-responsive-navigation dl-menuwrapper" id="greennature-responsive-navigation">
+                                <button class="dl-trigger">Open Menu</button>
+                                <ul id="menu-main-menu" class="dl-menu greennature-main-mobile-menu">
+                                    <li class="menu-item menu-item-home current-menu-item page_item page-item-5680 current_page_item"><a href="index.php" aria-current="page">Home</a></li>
+                                    <li class="menu-item menu-item-has-children menu-item-15"><a href="#">Dashboard</a>
+                                        <ul class="dl-submenu">
+                                            <li class="menu-item"><a href="todayDashboard.php">Today Dashboard</a></li>
+                                            <li class="menu-item"><a href="historyDashboard.php">History Dashboard</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item menu-item-has-children"><a href="#">Blog</a>
+                                        <ul class="dl-submenu">
+                                            <li class="menu-item menu-item-has-children"><a href="display.php">Educational Content</a>
+                                                <li class="menu-item menu-item-has-children"><a href="calender2.html">Calender</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item menu-item-has-children"><a href="#">My Account</a>
+                                        <ul class="dl-submenu">
+                                            <li class="menu-item"><a href="socialmedia.php">Share To Social Media</a></li>
+                                            <li class="menu-item"><a href="survey.html">Survey</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+    
+                        <!-- navigation -->
+                        <div class="greennature-navigation-wrapper">
+                            <nav class="greennature-navigation" id="greennature-main-navigation">
+                                <ul id="menu-main-menu-1" class="sf-menu greennature-main-menu">
+                                    <li class="menu-item menu-item-home greennature-normal-menu"><a href="home.html"><i class="fa fa-home"></i>Home</a></li>
+                                    <li class="menu-item menu-item-has-children greennature-normal-menu"><a href="#" class="sf-with-ul-pre"><i class="fa fa-file-text-o"></i>Dashboard</a>
+                                        <ul class="sub-menu">
+                                            <li class="menu-item"><a href="todayDashboard.php">Today Dashboard</a></li>
+                                            <li class="menu-item"><a href="historyDashboard.php">History Dashboard</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item menu-item-has-children greennature-normal-menu"><a href="#" class="sf-with-ul-pre"><i class="fa fa-file-text-o"></i>Blog</a>
+                                        <ul class="sub-menu">
+                                            <li class="menu-item"><a href="display.php">Educational Content</a></li>
+                                            <li class="menu-item"><a href="calender2.html">Calendar</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- My Account Section -->
+                                    <li class="menu-item menu-item-has-childrenmenu-item menu-item-has-children greennature-normal-menu">
+                                        <a href="#" class="sf-with-ul-pre">My Account</a>
+                                        <ul class="sub-menu">
+                                            <!-- Profile Section -->
+                                            <li class="menu-item"><a href="profile.php">Profile</a></li>
+                                            <li class="menu-item"><a href="survey.html">Survey</a></li>
+                                            <li class="menu-item menu-item-has-children menu-item-"><a href="socialmedia.php" class="sf-with-ul-pre">Share To Social Media</a>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <a id="sign-out-button" class="greennature-donate-button greennature-lb-payment">
+                                    <span class="greennature-button-overlay"></span>
+                                    <span class="greennature-button-donate-text">Sign Out</span>
+                                </a>
+    
+                            </nav>
+                            <div class="greennature-navigation-gimmick" id="greennature-navigation-gimmick"></div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>               
+                </div><br>
+            </header>
+               
+    
+    <!--Calender Section-->      
+        <div class="calender">
+            <ul class="month">
+              <li>
+                <h1>January</h1>
+                <h2>2016</h2>
+              </li>
+              <span class="prev">&#10094;</span>
+              <span class="next">&#10095;</span>
+            </ul>
+            <ul class="weeks">
+              <li>Sat</li>
+              <li>Sun</li>
+              <li>Mon</li>
+              <li>Tue</li>
+              <li>Wed</li>
+              <li>Thur</li>
+              <li>Fri</li>
+            </ul>
+            <ul class="days">
+            </ul>
+
+    </div>
+    <div class="event-list">
+        <br>
+        <h2 class="Event-List-header">Event List</h2>
+        <div id="event-list-container"></div>
+            <div class="search-input-container">
+                <input type="text" id="searchInput" placeholder="YYYY-MM-DD / EVENT NAME">
+            </div>
+            <div class="list-events">
+
+            </div>
+    </div>
+
+    </body>
+<script>
+
+var calender = document.querySelector(".calender"), //container of calendar
+    topDiv = document.querySelector('.month'),
+    monthDiv = calender.querySelector("h1"), //h1 of months
+    yearDiv = calender.querySelector('h2'), //h2 for years
+    weekDiv = calender.querySelector(".weeks"), //week container
+    dayNames = weekDiv.querySelectorAll("li"), //day names
+    dayItems = calender.querySelector(".days"), //date of day container
+    prev = calender.querySelector(".prev"),
+    next = calender.querySelector(".next"),
+
+    // date variables
+    years = new Date().getFullYear(),
+    monthes = new Date(new Date().setFullYear(years)).getMonth(),
+    lastDayOfMonth = new Date(new Date(new Date().setMonth(monthes + 1)).setDate(0)).getDate(),
+    dayOfFirstDateOfMonth = new Date(new Date(new Date().setMonth(monthes)).setDate(1)).getDay(),
+
+    monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ],
+    colors = ['#93C572', '#8A9A5B', '#4F7942', '#2E8B57', '#00A86B', '#50CB78', 
+    '#009E60', '#228B22', '#355E3B', '#00563B', '#4B5320', '#8f9779'],
+    i, //counter for day before month first day in week
+    x, //counter for prev , next
+    counter; //counter for day of month  days;
+
+
+
+    
+    document.addEventListener("DOMContentLoaded", function() {
+    // Array to hold the events
+    var events = [{
+            date: '2024-04-28 (12pm-2pm)',
+            title: 'Carbon footprint talk',
+            image: 'eventtalk.webp',
+            description: 'In today\'s world, awareness of our environmental impact, particularly our carbon footprint, is more critical than ever. Join us for an enlightening discussion on understanding and reducing your carbon footprint.',
+            imageSize: { width: '250px', height: '150px' } // Update imageSize to be an object
+        },
+        {
+            date: '2024-04-04 (9am-10am)',
+            title: 'Nature walk',
+            image: 'image3.avif',
+            description: 'Join us on a refreshing journey through the serene beauty of nature. Our nature walk is a delightful exploration of the natural world, where you can immerse yourself in the sights, sounds, and scents of the outdoors.',
+            imageSize: { width: '300px', height: '200px' } // Example size, adjust as needed
+        },
+        {
+            date: '2024-04-11 (7am-9am)',
+            title: 'Tree planting',
+            image: 'image1.jpeg',
+            description: 'Join us for a day of environmental action and community involvement as we come together to plant trees and make a positive impact on our planet. Our Tree Planting Initiative aims to enhance the local ecosystem, improve air quality, and create a greener, more sustainable environment for future generations.',
+            imageSize: { width: '300px', height: '200px' } // Example size, adjust as needed
+        },
+        {
+            date: '2024-05-09 (11am-1am)',
+            title: 'Renewable Energy Talk',
+            image: 'image5.jpg',
+            description: ' Together experts, policymakers, and community members to discuss the transition to renewable energy sources such as wind, solar, and hydroelectric power. Explore opportunities for local renewable energy projects and policy initiatives.',
+            imageSize: { width: '300px', height: '200px' }
+        }
+    ];
+
+    function attachEventListeners() {
+    // Select all date items inside the calendar
+    const openModalButtons = document.querySelectorAll('.days li');
+
+    // Add a click event listener to each date item
+    openModalButtons.forEach(function(dateItem) {
+        dateItem.addEventListener('click', function(event) {
+            // Extract the clicked date from the event target
+            var clickedDate = event.target.textContent;
+            var modalId = 'modal_' + clickedDate.replace(/\s+/g, '');
+            var modal = document.getElementById(modalId);
+
+            // Check if modal already exists
+            if (!modal) {
+                // Create the modal element
+                modal = document.createElement('div');
+                modal.id = modalId;
+                modal.classList.add('modal');
+
+                // Check for events on the clicked date
+                var eventForThisDate = events.find(function(event) {
+                    var eventDate = new Date(event.date);
+                    // Compare event's year and month with the displayed year and month
+                    return eventDate.getFullYear() == years && eventDate.getMonth() == monthes && eventDate.getDate() == clickedDate;
+                });
+
+                // Set up modal content
+                if (eventForThisDate) {
+                    var imageSizeStyle = `width: ${eventForThisDate.imageSize.width}; height: ${eventForThisDate.imageSize.height};`;
+
+                    modal.innerHTML = `
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <h2>${eventForThisDate.title}</h2>
+                            <p>Date: ${eventForThisDate.date}</p>
+                            <img src="${eventForThisDate.image}" style="${imageSizeStyle}" alt="Event Icon">
+                            <p>${eventForThisDate.description}</p>
+                        </div>
+                    `;
+                       // Append overlay to the body
+                    var overlay = document.createElement('div');
+                    overlay.classList.add('overlay');
+                    document.body.appendChild(overlay);
+
+                } else {
+                    // No event found, display a default message
+                    modal.innerHTML = `
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <p>No event for this date.</p>
+                        </div>
+                    `;
+                }
+
+                // Append modal to the body
+                document.body.appendChild(modal);
+
+
+                var closeButton = modal.querySelector('.close');
+                    closeButton.addEventListener('click', function() {
+                        modal.style.display = 'none';
+                        modal.parentNode.removeChild(modal);
+
+                        // Remove overlay when modal is closed
+                        var overlay = document.querySelector('.overlay');
+                        if (overlay) {
+                            overlay.parentNode.removeChild(overlay);
+                        }
+                    });
+
+                // Display the modal
+                modal.style.display = 'block';
+                modal.style.width = '600px'; // Set width to 600 pixels
+                modal.style.height = '450px'; // Set height to 400 pixels
+            }
+        });
+    });
+}
+
+    // Function to display days of the month in items
+    function days(x) {
+        'use strict';
+        dayItems.innerHTML = "";
+        monthes = monthes + x;
+
+        /////////////////////////////////////////////////
+        // Test for last month useful while prev, max prevent go over array
+        if (monthes > 11) {
+            years = years + 1;
+            monthes = new Date(new Date(new Date().setFullYear(years)).setMonth(0)).getMonth();
+        }
+        if (monthes < 0) {
+            years = years - 1;
+            monthes = new Date(new Date(new Date().setFullYear(years)).setMonth(11)).getMonth();
+        }
+
+        var firstDayOfMonth = new Date(years, monthes, 1).getDay();
+        var daysInPreviousMonth = new Date(years, monthes, 0).getDate();
+        var daysToAdd = firstDayOfMonth === 0 ? 6 : firstDayOfMonth + 1;
+
+        lastDayOfMonth = new Date(new Date(new Date(new Date().setFullYear(years)).setMonth(monthes + 1)).setDate(0)).getDate();
+        dayOfFirstDateOfMonth = new Date(new Date(new Date(new Date().setFullYear(years)).setMonth(monthes)).setDate(1)).getDay();
+        /////////////////////////////////////////////////
+        yearDiv.innerHTML = years;
+        monthDiv.innerHTML = monthNames[monthes];
+        for (i = 0; i <= dayOfFirstDateOfMonth; i = i + 1) {
+            var monthIndex = (monthes - 1 < 0) ? 11 : monthes - 1; // Get the index of the previous month
+            var backgroundColor = colors[monthIndex];
+            dayItems.innerHTML += "<li style= 'background-color:" + backgroundColor + "'>" + "</li>";
+        }
+
+        for (counter = 1; counter <= lastDayOfMonth; counter = counter + 1) {
+            // Check if the current date has an event
+            var eventForThisDate = events.find(function(event) {
+                var eventDate = new Date(event.date);
+                // Compare event's year and month with the displayed year and month
+                return eventDate.getFullYear() == years && eventDate.getMonth() == monthes && eventDate.getDate() == counter;
+            });
+
+            if (eventForThisDate) {
+                // Add an event indicator to the date with the event title
+                dayItems.innerHTML += `<li class="event-date">${counter}<span class="event-dot"></span></li>`;
+            } else {
+                // Add a regular date
+                dayItems.innerHTML += "<li>" + counter + "</li>";
+            }
+        }
+
+        topDiv.style.background = colors[monthes];
+        dayItems.style.background = colors[monthes];
+
+        if (monthes === new Date().getMonth() && years === new Date().getFullYear()) {
+            dayItems.children[new Date().getDate() + dayOfFirstDateOfMonth].style.background = "white";
+        }
+
+        // After rendering the calendar, reattach event listeners for opening the modal
+        attachEventListeners();
+    }
+
+
+
+    // Function to display all events in the events-list div
+    function bindAllEventsIntoBox(events) {
+        // Select the container element where events will be displayed
+        var listEventsContainer = document.querySelector('.list-events');
+
+        // Clear previous content
+        listEventsContainer.innerHTML = '';
+
+        // Check if events exist
+        if (events.length === 0) {
+            listEventsContainer.innerHTML = '<p>No events available</p>';
+            return;
+        }
+
+        // Create a container element to hold all event items
+        var eventsBox = document.createElement('div');
+        eventsBox.classList.add('events-box');
+
+        // Iterate through each event and create HTML elements
+        events.forEach(function(event) {
+            var eventItem = document.createElement('div');
+            eventItem.classList.add('event-item');
+            eventItem.innerHTML = `
+                <h5>${event.title}</h5>
+                <p>Date: ${event.date}</p>
+                <img src="${event.image}" alt="${event.title}">
+                <p>${event.description}</p>
+                <button>Register</button>
+                <hr>
+            `;
+
+            // Append each event item to the container element
+            eventsBox.appendChild(eventItem);
+        });
+
+        // Append the container element to the list-events container
+        listEventsContainer.appendChild(eventsBox);
+    }
+
+    // Call the function with the events array
+    bindAllEventsIntoBox(events);
+
+
+
+    
+    function handleRegistration() {
+        // Select all register buttons inside the event items
+        document.querySelectorAll('.event-item button').forEach(function(registerBtn) {
+            registerBtn.addEventListener('click', function(event) {
+                // Prevent the default button behavior (form submission)
+                event.preventDefault();
+
+                // Access the clicked button
+                var clickedBtn = event.target;
+
+                // Toggle the 'registered' class on the button
+                clickedBtn.classList.toggle('registered');
+
+                // Change the text content of the clicked button based on its registration status
+                if (clickedBtn.classList.contains('registered')) {
+                    clickedBtn.textContent = 'Registered';
+                } else {
+                    clickedBtn.textContent = 'Register';
+                }
+
+                // Optionally, you can perform additional actions here,
+                // such as sending a registration request to the server.
+            });
+        });
+    }
+     // Call the function to handle registration button click
+     handleRegistration();
+     
+
+
+     
+    function filterEvents() {
+        var input, filter, events, eventItem, title, date, i, titleTxtValue, dateTxtValue;
+        input = document.getElementById('searchInput');
+        filter = input.value.toUpperCase();
+        events = document.querySelectorAll('.event-item');
+
+        // Loop through all event items, and hide those that do not match the search query
+        for (i = 0; i < events.length; i++) {
+            eventItem = events[i];
+            title = eventItem.querySelector('h5');
+            date = eventItem.querySelector('p:nth-child(2)'); // Assuming date is the second <p> element
+            titleTxtValue = title.textContent || title.innerText;
+            dateTxtValue = date.textContent || date.innerText;
+
+            if (titleTxtValue.toUpperCase().indexOf(filter) > -1 || dateTxtValue.toUpperCase().indexOf(filter) > -1) {
+                eventItem.style.display = ''; // Display if title or date matches the filter
+            } else {
+                eventItem.style.display = 'none'; // Hide if neither title nor date matches the filter
+            }
+        }
+    }
+
+    // Attach event listener to the search input
+    document.getElementById('searchInput').addEventListener('input', filterEvents); 
+
+
+
+
+
+
+    const openModalButtons = document.querySelectorAll('.days li');
+    const prev = document.querySelector(".prev");
+    const next = document.querySelector(".next");
+
+    // Attach event listeners for prev and next buttons
+    prev.onclick = function() {
+        'use strict';
+        days(-1); // Decrement months
+    };
+
+    next.onclick = function() {
+        'use strict';
+        days(1); // Increment months
+    };
+
+    // Call the days function to initially display the calendar
+    days(0);
+
+
+});
+
+       
+
+
+    const signOutButton = document.getElementById("sign-out-button");
+
+
+    signOutButton.addEventListener("click", function() {
+         // Redirect the user to "loginandsignup.php"
+         window.location.href = "loginandsignup.php";
+    });
+
+
+</script>
+
+
+<script type='text/javascript' src='js/jquery/jquery.js'></script>
+<script type='text/javascript' src='js/jquery/jquery-migrate.min.js'></script>
+<script type='text/javascript' src='plugins/superfish/js/superfish.js'></script>
+<script type='text/javascript' src='js/hoverIntent.min.js'></script>
+<script type='text/javascript' src='plugins/dl-menu/modernizr.custom.js'></script>
+<script type='text/javascript' src='plugins/dl-menu/jquery.dlmenu.js'></script>
+<script type='text/javascript' src='plugins/jquery.easing.js'></script>
+<script type='text/javascript' src='plugins/fancybox/jquery.fancybox.pack.js'></script>
+<script type='text/javascript' src='plugins/fancybox/helpers/jquery.fancybox-media.js'></script>
+<script type='text/javascript' src='plugins/fancybox/helpers/jquery.fancybox-thumbs.js'></script>
+<script type='text/javascript' src='plugins/flexslider/jquery.flexslider.js'></script>
+<script type='text/javascript' src='plugins/jquery.isotope.min.js'></script>
+<script type='text/javascript' src='js/plugins.js'></script>
+<script type='text/javascript' src='js/isotope.js'></script>
+<script type='text/javascript' src='plugins/jquery.transit.min.js'></script>
+<script type='text/javascript' src='plugins/gdlr-portfolio/gdlr-portfolio-script.js'></script>
+</html> 

@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+
+
+.survey_image {
+  background-image: url('calender.gif'); /* Corrected */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  height: 1200px;
+  width: 1440px;
+
+}
+
+/*decoration*/
+.secondary_header{
+    margin: 20px 30px 0;
+    width:  275px;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 5px 5px 0;
+    padding-bottom: 10;
+    color: #ffffff;
+    font-family:Arial, Helvetica, sans-serif
+  }
+  
+  
+  
+  .visuallyhidden1{
+    position: absolute !important; clip: rect(1px 1px 1px 1px); clip: rect(1px, 1px, 1px, 1px);
+  }
+  .product-review-stars label:after{
+    content: "★";
+    color: inherit;
+   /* -webkit-transform: scale(3);*/
+    position: absolute;
+    z-index: 4;
+    left: 0px;
+    transition: all .3s;
+    opacity: 0;
+    color: inherit;
+    visibility: hidden;
+   
+  }
+  
+  .product-review-stars input:checked + label:after{
+    visibility: visible;
+    /*-webkit-transform: scale(1);*/
+    opacity: 1;
+  }
+  
+  .product-review-stars  {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    width:  205px;
+    display: inline-block;
+    padding-left: 60px;
+  
+  
+  
+  
+  }
+
+.container1 .product-review-label,
+.container1 .secondary_header {
+    color: white;
+}
+  
+  .product-review-stars label{
+      font-family: "icomoon";
+      font-size: 2em;
+      position: relative;
+      cursor: pointer;
+      color:white;
+ 
+  }
+
+  .product-review-stars input:checked ~ label:before{
+      opacity: 1;
+  }
+  .product-review-stars:hover input ~ label:before{
+      opacity: 0;
+  }
+  
+  .product-review-stars input + label:before{
+      content: "\2605";
+      position: absolute;
+      right: 0;
+      opacity: 0;
+      transition: opacity .3s ease-in-out, color .3s ease-in-out;
+      backface-visibility:hidden;
+  -webkit-backface-visibility:hidden; /* Chrome and Safari */
+  -moz-backface-visibility:hidden; /* Firefox */
+  -ms-backface-visibility:hidden; /* Internet Explorer */
+  }
+  .product-review-stars input + label:hover:before,
+  .product-review-stars input + label:hover ~ label:before
+  {
+      opacity: 1;
+  }
+  
+  .product-review-stars input + label:nth-of-type(1):after,
+  .product-review-stars input + label:nth-of-type(1):before,
+  .product-review-stars input +  label:nth-of-type(1):hover:before,
+  .product-review-stars input + label:nth-of-type(1):hover ~ label:before,
+  .product-review-stars input:nth-of-type(1):checked ~ label:before{
+      color:orange;
+  }
+  .product-review-stars input + label:nth-of-type(2):after,
+  .product-review-stars input + label:nth-of-type(2):before,
+  .product-review-stars input + label:nth-of-type(2):hover:before,
+  .product-review-stars input + label:nth-of-type(2):hover ~ label:before,
+  .product-review-stars input:nth-of-type(2):checked ~ label:before{
+      color: orange;
+  }
+  .product-review-stars input + label:nth-of-type(3):after,
+  .product-review-stars input + label:nth-of-type(3):before,
+  .product-review-stars input + label:nth-of-type(3):hover:before,
+  .product-review-stars input + label:nth-of-type(3):hover ~ label:before,
+  .product-review-stars input:nth-of-type(3):checked ~ label:before{
+      color:orange;
+  }
+  
+  .product-review-stars input + label:nth-of-type(4):after,
+  .product-review-stars input + label:nth-of-type(4):before,
+  .product-review-stars input + label:nth-of-type(4):hover:before,
+  .product-review-stars input + label:nth-of-type(4):hover ~ label:before,
+  .product-review-stars input:nth-of-type(4):checked ~ label:before{
+      color: orange;
+  }
+  .product-review-stars input + label:nth-of-type(5):after,
+  .product-review-stars input + label:nth-of-type(5):before,
+  .product-review-stars label:nth-of-type(5):hover:before,
+  .product-review-stars input:nth-of-type(5):checked ~ label:before{
+      color: orange;
+  }
+  .product-review-stars label:nth-of-type(5):hover:before{
+      color: orange !important;
+  }
+  
+  .product-review-stars input[type="radio"] {
+    display: none;
+  }
+  
+  
+  
+  /* SEPARATOR */ 
+  
+  
+  .visuallyhidden2{
+    position: absolute !important; clip: rect(1px 1px 1px 1px); clip: rect(1px, 1px, 1px, 1px);
+  }
+  
+  
+  /* SEPARATOR */ 
+  
+  
+  .visuallyhidden3{
+    position: absolute !important; clip: rect(1px 1px 1px 1px); clip: rect(1px, 1px, 1px, 1px);
+  }
+  
+  
+  .text-box-design {
+    width: 80%; /* Adjust the width as needed */
+    height: 200px; /* Set the height to make the textbox bigger *//* Add padding for better appearance */
+    font-size: 16px; /* Adjust font size as needed */
+  
+  }
+  
+  .text-box input[type="text"] {
+    width: 100%;
+    height: 200px;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-bottom: 1px solid #ccc; /* Optional: Add a bottom border for better separation */
+    box-sizing: border-box;
+  }
+  
+  .text-box + .placeholder {
+    position: absolute;
+    top: 10px; /* Adjust the vertical position of the placeholder as needed */
+    left: 10px; /* Adjust the horizontal position of the placeholder as needed */
+    pointer-events: none; /* Ensure that the placeholder does not interfere with input events */
+    color: #999; /* Adjust the color of the placeholder text */
+    transition: top 0.3s, left 0.3s, font-size 0.3s; /* Optional: Add transition for smoother animation */
+  }
+  
+  .first_header {
+    font-size: 22px;
+    padding-bottom: 5px;
+    font-family:sans-serif;
+    font-weight: bold;
+    background-color: #4d3a28;
+    color: aliceblue;
+    padding:10px;
+    
+  }
+  
+  
+  .secondary_header {
+    font-size: larger;
+    color:grey;
+    margin: 0; /* Remove default margin */
+    padding: 10px 0 0 0;
+    font-weight: bold;
+  
+  
+  
+  }
+  
+  .container1{
+    width: 50%;
+    margin: auto; /* Center horizontally */
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Arrange items vertically */
+    justify-content: center; /* Center items vertically */
+    align-items: center; /* Center items horizontally */
+    padding: 15px; /* Add padding for better appearance */
+    box-sizing: border-box; 
+    border-radius: 5%;
+    color: white;
+    background-color: rgba(157, 121, 96, 0.85); /* Adjust the alpha value for the desired transparency */
+   
+   
+   
+  }
+  
+  .product-review {
+    display: flex;
+    align-items: center;
+  
+  }
+  
+  .product-review-label {
+    font-size: larger;
+    width: 100px; /* Adjust the width as needed */
+    text-align: left; /* Align the text to the right */
+    margin-right: 120px;
+    color:#7f7f7f
+    
+  
+   
+  }
+  
+  .your-message{
+    width: 100%; 
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1em;
+    box-shadow: 3px 3px rgba(0,0,0,0.5);
+    outline: none;
+    
+  }
+  
+  .submit-button:hover { 
+    background-color: rgb(97, 226, 155);
+  }
+  .submit-button {
+    position: relative; /* Set position relative for button */
+    background-color: rgb(20, 83, 42);
+    height: 40px;
+    box-shadow: #34495E 10px;
+    color: #fff;
+    font-size: 1em;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center; /* Horizontally center the text within button */
+}
+
+.submit-button-title {
+    position: absolute; /* Set position absolute for the label */
+    top: 50%; /* Move the label 50% down within its parent (button) */
+    left: 50%; /* Move the label 50% from the left within its parent (button) */
+    transform: translate(-50%, -50%); /* Adjust to vertically and horizontally center the label */
+}
+ 
+  .greennature-page-title-wrapper {
+    position: relative;
+    top: 50%; /* Move the wrapper 50% down the page */
+    text-align: center; /* Center the text horizontally */
+    background-image: url(blurred-leaves.webp);
+    background-size: cover;
+    background-position: center;
+    height: 300px; /* Adjust the height of the wrapper as needed */
+}
+
+.greennature-page-title {
+    color: white;
+    font-size: 50px;
+    font-family: sans-serif;
+    position: absolute;
+    top: 60%; /* Move the title 50% down within its parent wrapper */
+    left: 0;
+    right: 0;
+    width: 100%; /* Ensure the title spans the full width */
+}
+
+
+.inner_border{
+  border: 3px solid rgb(255, 255, 255);  
+  padding: 60px; /* Increase the padding */
+  border-radius: 2%;
+  margin: 40px; 
+}
+
+
+.content-wrapper {
+  padding-top: 50px;
+}
+
+
+#feedback-popup {
+  position: fixed;
+  top: 50%;
+  left: 32.5%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bolder;
+}
+
+#feedback-popup p {
+  margin: 0;
+  text-align: center;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#close-button {
+  background-color: #53a378;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#close-button:hover {
+  background-color: #428160;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  z-index: 1000; /* Ensure it's above other elements */
+}
+
+.greennature-content {
+  position: relative; /* Ensure relative positioning for overlay */
+}
+
+.list-events{
+
+  overflow-y: auto; /* Enable vertical scrolling */
+
+
+}
+
+
+.footer{
+  transform:translate(0);
+}
+    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="initial-scale=1.0" />
+
+    <title>User Survey</title>
+
+    <link rel="stylesheet" href="survey.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato%3A100%2C100italic%2C300%2C300italic%2Cregular%2Citalic%2C700%2C700italic%2C900%2C900italic&amp;subset=latin&amp;' type='text/css' media='all' />
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Noto+Sans%3Aregular%2Citalic%2C700%2C700italic&amp;subset=greek%2Ccyrillic-ext%2Ccyrillic%2Clatin%2Clatin-ext%2Cvietnamese%2Cgreek-ext&amp;' type='text/css' media='all' />
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Merriweather%3A300%2C300italic%2Cregular%2Citalic%2C700%2C700italic%2C900%2C900italic&amp;subset=latin%2Clatin-ext&amp;' type='text/css' media='all' />
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Mystery+Quest%3Aregular&amp;subset=latin%2Clatin-ext&amp;' type='text/css' media='all' />
+   
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel='stylesheet' href='css/style.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='plugins/superfish/css/superfish.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='plugins/dl-menu/component.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='plugins/font-awesome-new/css/font-awesome.min.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='plugins/elegant-font/style.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='plugins/fancybox/jquery.fancybox.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='plugins/flexslider/flexslider.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='css/style-responsive.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='css/style-custom.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='plugins/masterslider/public/assets/css/masterslider.main.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='css/master-custom.css' type='text/css' media='all' />
+</head> 
+
+<body data-rsssl=1 class="home page-template-default page page-id-5680 _masterslider _msp_version_3.2.7 woocommerce-no-js">
+    <div class="body-wrapper  float-menu" data-home="https://demo.goodlayers.com/greennature/">
+        <header class="greennature-header-wrapper header-style-5-wrapper greennature-header-with-top-bar">
+            <!-- top navigation -->
+            <div class="top-navigation-wrapper">
+                <div class="top-navigation-container container">
+                    <div class="top-navigation-left">
+                        <div class="top-navigation-left-text">
+                            Phone : +1800-222-3333      Email : contact@yourdomain.com </div>
+                    </div>
+                    <div class="top-navigation-right">
+                        <div class="top-social-wrapper">
+                            <div class="social-icon">
+                                <a href="#" target="_blank">
+                                    <i class="fa fa-facebook"></i></a>
+                            </div>
+                            <div class="social-icon">
+                                <a href="#" target="_blank">
+                                    <i class="fa fa-flickr"></i></a>
+                            </div>
+                            <div class="social-icon">
+                                <a href="#" target="_blank">
+                                    <i class="fa fa-linkedin"></i></a>
+                            </div>
+                            <div class="social-icon">
+                                <a href="#" target="_blank">
+                                    <i class="fa fa-pinterest-p"></i></a>
+                            </div>
+                            <div class="social-icon">
+                                <a href="#" target="_blank">
+                                    <i class="fa fa-tumblr"></i></a>
+                            </div>
+                            <div class="social-icon">
+                                <a href="#" target="_blank">
+                                    <i class="fa fa-twitter"></i></a>
+                            </div>
+                            <div class="social-icon">
+                                <a href="#" target="_blank">
+                                    <i class="fa fa-vimeo"></i></a>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div id="greennature-header-substitute"></div>
+            <div class="greennature-header-inner header-inner-header-style-5">
+                <div class="greennature-header-container container">
+                    <div class="greennature-header-inner-overlay"></div>
+                    <!-- logo -->
+                    <div class="greennature-logo">
+                        <div class="greennature-logo-inner">
+                            <a href="index-2.html">
+                                <img src="images/logo.png" alt="" /> </a>
+                        </div>
+                        <div class="greennature-responsive-navigation dl-menuwrapper" id="greennature-responsive-navigation">
+                            <button class="dl-trigger">Open Menu</button>
+                            <ul id="menu-main-menu" class="dl-menu greennature-main-mobile-menu">
+                                <li class="menu-item menu-item-home current-menu-item page_item page-item-5680 current_page_item"><a href="index.php" aria-current="page">Home</a></li>
+                                <li class="menu-item menu-item-has-children menu-item-15"><a href="#">Dashboard</a>
+                                    <ul class="dl-submenu">
+                                        <li class="menu-item"><a href="dashboard.php">Today Dashboard</a></li>
+                                        <li class="menu-item"><a href="history.php">History Dashboard</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item menu-item-has-children"><a href="#">Blog</a>
+                                    <ul class="dl-submenu">
+                                        <li class="menu-item menu-item-has-children"><a href="display.php">Educational Content</a>
+                                            <li class="menu-item menu-item-has-children"><a href="calender2.html">Calender</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item menu-item-has-children"><a href="#">My Account</a>
+                                    <ul class="dl-submenu">
+                                    	<li class="menu-item"><a href="socialmedia.php">Share To Social Media</a></li>
+                                        <li class="menu-item"><a href="survey.html">Survey</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- navigation -->
+                    <div class="greennature-navigation-wrapper">
+                        <nav class="greennature-navigation" id="greennature-main-navigation">
+                            <ul id="menu-main-menu-1" class="sf-menu greennature-main-menu">
+                                <li class="menu-item menu-item-home greennature-normal-menu"><a href="home.html"><i class="fa fa-home"></i>Home</a></li>
+                                <li class="menu-item menu-item-has-children greennature-normal-menu"><a href="#" class="sf-with-ul-pre"><i class="fa fa-file-text-o"></i>Dashboard</a>
+                                    <ul class="sub-menu">
+                                        <li class="menu-item"><a href="dashboard.php">Today Dashboard</a></li>
+                                        <li class="menu-item"><a href="history.php">History Dashboard</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item menu-item-has-children greennature-normal-menu"><a href="#" class="sf-with-ul-pre"><i class="fa fa-file-text-o"></i>Blog</a>
+                                    <ul class="sub-menu">
+                                        <li class="menu-item"><a href="display.php">Educational Content</a></li>
+                                        <li class="menu-item"><a href="calender2.html">Calendar</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item menu-item-has-childrenmenu-item menu-item-has-children greennature-normal-menu"><a href="#" class="sf-with-ul-pre">My Account</a>
+                                    <ul class="sub-menu">
+                                        <li class="menu-item"><a href="survey.html">Survey</a></li>
+                                        <li class="menu-item menu-item-has-children menu-item-"><a href="Social.php" class="sf-with-ul-pre">Share To Social Media</a>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <a id="sign-out-button" class="greennature-donate-button greennature-lb-payment">
+                                <span class="greennature-button-overlay"></span>
+                                <span class="greennature-button-donate-text">Sign Out</span>
+                            </a>
+
+                        </nav>
+                        <div class="greennature-navigation-gimmick" id="greennature-navigation-gimmick"></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            </header>
+
+            <div class="greennature-page-title-wrapper">
+                <h1 class="greennature-page-title">USER SURVEY</h1>
+            </div>
+        </div>
+        <div class="survey_image">
+        <div class="content-wrapper"> 
+            <div class="greennature-content">
+        
+          <div class="container1">
+           
+        
+            <h1 class="first_header">Rate our website on the following aspects: </h1>
+            <div class="inner_border">
+            <form action="survey.php" method="post">
+                <div id="feedback-form">
+                <br>
+                
+                <div class="product-review">
+                    <label class="product-review-label" for="star5(1)">Design: </label>
+                    <div class="product-review-stars">
+                        <input type="radio" id="star5(1)" value="5" class="visuallyhidden1" name="rating1" /><label for="star5(1)" title="Amazing!">★</label>
+                        <input type="radio" id="star4(1)" value="4" class="visuallyhidden1" name="rating1" /><label for="star4(1)" title="Pretty good">★</label>
+                        <input type="radio" id="star3(1)" value="3" class="visuallyhidden1" name="rating1" /><label for="star3(1)" title="Meh">★</label>
+                        <input type="radio" id="star2(1)" value="2" class="visuallyhidden1" name="rating1" /><label for="star2(1)" title="Kinda bad">★</label>
+                        <input type="radio" id="star1(1)" value="1" class="visuallyhidden1" name="rating1" /><label for="star1(1)" title="Sucks">★</label>
+                    </div>
+                </div>
+                <br>
+                
+                <div class="product-review">
+                    <label class="product-review-label" for="star5(2)">Navigation: </label>
+                    <div class="product-review-stars">
+                        <input type="radio" id="star5(2)" value="5" class="visuallyhidden2" name="rating2" /><label for="star5(2)" title="Amazing!">★</label>
+                        <input type="radio" id="star4(2)" value="4" class="visuallyhidden2"  name="rating2" /><label for="star4(2)" title="Pretty good">★</label>
+                        <input type="radio" id="star3(2)" value="3" class="visuallyhidden2"  name="rating2" /><label for="star3(2)" title="Meh">★</label>
+                        <input type="radio" id="star2(2)" value="2" class="visuallyhidden2"  name="rating2" /><label for="star2(2)" title="Kinda bad">★</label>
+                        <input type="radio" id="star1(2)" value="1" class="visuallyhidden2" name="rating2" /><label for="star1(2)" title="Sucks">★</label>
+                    </div>
+                </div>
+                <br>
+                <div class="product-review">
+                    <label class="product-review-label" for="star5(3)">Usability: </label>
+                    <div class="product-review-stars">
+                        <input type="radio" id="star5(3)" value="5" class="visuallyhidden3"  name="rating3"/><label for="star5(3)" title="Amazing!">★</label>
+                        <input type="radio" id="star4(3)" value="4" class="visuallyhidden3" name="rating3" /><label for="star4(3)" title="Pretty good">★</label>
+                        <input type="radio" id="star3(3)" value="3" class="visuallyhidden3" name="rating3"  /><label for="star3(3)" title="Meh">★</label>
+                        <input type="radio" id="star2(3)" value="2" class="visuallyhidden3" name="rating3" /><label for="star2(3)" title="Kinda bad">★</label>
+                        <input type="radio" id="star1(3)" value="1" class="visuallyhidden3" name="rating3" /><label for="star1(3)" title="Sucks">★</label>
+                    </div>
+                </div>
+                <br><br><br><br>
+        
+          
+                <label class="secondary_header" for="radio1(1)" style="display: inline;">How well does the website meet your needs? </label>
+                <div required>
+                    <br>
+                    <input type="radio" id="radio1(1)" name="rating4" value="Not at all"><label for="radio1(1)" title="Not at all">Not at all</label>
+                    <span style="margin-right: 19px;"></span>
+                    <input type="radio" id="radio2(1)" name="rating4" value="Slightly"><label for="radio2(1)" title="Slightly">Slightly</label>
+                    <span style="margin-right: 19px;"></span>
+                    <input type="radio" id="radio3(1)" name="rating4" value="Moderately"><label for="radio3(1)" title="Moderately">Moderately</label>
+                    <span style="margin-right: 19px;"></span>
+                    <input type="radio" id="radio4(1)" name="rating4" value="Very"><label for="radio4(1)" title="Very">Very</label>
+                    <span style="margin-right: 19px;"></span>
+                    <input type="radio" id="radio5(1)" name="rating4" value="Extremely"><label for="radio5(1)" title="Extremely">Extremely</label>
+                </div>
+                
+                <br><br><br>
+                <div>
+                    <label class="secondary_header">What can our website improve on? </label><br><br>
+                    <span><textarea class="your-message" name="your_message" cols="40" rows="10" aria-invalid="false" placeholder="write your opinion here..."></textarea></span> </p>
+                </div>
+                <div>
+                    <button type="button" id="submit-button" class="submit-button"><label class="submit-button-title">Submit</label></button>
+                </div>
+            </form>
+        
+            <!-- Dialog for displaying feedback message -->
+            <dialog id="feedback-popup" hidden>
+                <p>Thank-you for the feedback. Your feedback is appreciated!</p>
+                <div class="button-container">
+                    <button id="close-button">Close</button>
+                </div>
+            </dialog>
+            </div>
+            </div>
+
+        </div>
+    
+            
+        
+        </body>
+        <br>
+        <footer class="footer-wrapper">
+            <div class="footer-container container">
+                <div class="footer-column three columns" id="footer-widget-1">
+                    <div id="text-5" class="widget widget_text greennature-item greennature-widget">
+                        <div class="textwidget">
+                            <p><img src="upload/logo-light.png" style="width: 170px;" alt="" /></p>
+                            <p>The best website to help u to calculate ur carbon footprint. save the earth</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-column three columns" id="footer-widget-2">
+                    <div id="text-9" class="widget widget_text greennature-item greennature-widget">
+                        <h3 class="greennature-widget-title">Contact Info</h3>
+                        <div class="clear"></div>
+                        <div class="textwidget"><span class="clear"></span><span class="greennature-space" style="margin-top: -6px; display: block;"></span> Address: 184 Main Collins Street West Victoria 8007
+
+                            <span class="clear"></span><span class="greennature-space" style="margin-top: 10px; display: block;"></span>
+
+                            <i class="greennature-icon fa fa-phone" style="vertical-align: middle; color: #fff; font-size: 16px; "></i> +123-456789
+
+                            <span class="clear"></span><span class="greennature-space" style="margin-top: 10px; display: block;"></span>
+
+                            <i class="greennature-icon fa fa-mobile" style="vertical-align: middle; color: #fff; font-size: 20px; "></i> +987-654-321
+
+                            <span class="clear"></span><span class="greennature-space" style="margin-top: 10px; display: block;"></span>
+
+                            <i class="greennature-icon fa fa-envelope-o" style="vertical-align: middle; color: #fff; font-size: 16px; "></i> helpunidip224@gmail.com</div>
+                    </div>
+                </div>
+                <div class="footer-column three columns" id="footer-widget-3">
+                    <div id="gdlr-recent-post-widget-5" class="widget widget_gdlr-recent-post-widget greennature-item greennature-widget">
+                        <h3 class="greennature-widget-title">Recent Posts</h3>
+                        <div class="clear"></div>
+                        <div class="greennature-recent-post-widget">
+                            <div class="recent-post-widget">
+                                <div class="recent-post-widget-thumbnail">
+                                    <a href="#"><img src="upload/shutterstock_294481373-150x150.jpg" alt="" width="150" height="150" /></a>
+                                </div>
+                                <div class="recent-post-widget-content">
+                                    <div class="recent-post-widget-title"><a href="#">How to reduce carbon emittion</a></div>
+                                    <div class="recent-post-widget-info">
+                                        <div class="blog-info blog-date greennature-skin-info"><i class="fa fa-clock-o"></i><a href="#">21 Mar 2024</a></div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="recent-post-widget">
+                                <div class="recent-post-widget-thumbnail">
+                                    <a href="#"><img src="upload/shutterstock_181393724-150x150.jpg" alt="" width="150" height="150" /></a>
+                                </div>
+                                <div class="recent-post-widget-content">
+                                    <div class="recent-post-widget-title"><a href="#">Types of carbon emmition</a></div>
+                                    <div class="recent-post-widget-info">
+                                        <div class="blog-info blog-date greennature-skin-info"><i class="fa fa-clock-o"></i><a href="#">21 Mar 2024</a></div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-column three columns" id="footer-widget-4">
+                    <div id="gdlr-recent-portfolio2-widget-6" class="widget widget_gdlr-recent-portfolio2-widget greennature-item greennature-widget">
+                        <h3 class="greennature-widget-title">Recent Works</h3>
+                        <div class="clear"></div>
+                        <div class="greennature-recent-port2-widget">
+                            <div class="recent-port-widget-thumbnail">
+                                <a href="#"><img src="upload/shutterstock_161515241-150x150.jpg" alt="" width="150" height="150" /></a>
+                            </div>
+                            <div class="recent-port-widget-thumbnail">
+                                <a href="#"><img src="upload/shutterstock_133689230-150x150.jpg" alt="" width="150" height="150" /></a>
+                            </div>
+                            <div class="recent-port-widget-thumbnail">
+                                <a href="#"><img src="upload/shutterstock_53600221-150x150.jpg" alt="" width="150" height="150" /></a>
+                            </div>
+                            <div class="recent-port-widget-thumbnail">
+                                <a href="#"><img src="upload/shutterstock_124871620-150x150.jpg" alt="" width="150" height="150" /></a>
+                            </div>
+                            <div class="recent-port-widget-thumbnail">
+                                <a href="#"><img src="upload/shutterstock_281995004-150x150.jpg" alt="" width="150" height="150" /></a>
+                            </div>
+                            <div class="recent-port-widget-thumbnail">
+                                <a href="#"><img src="upload/shutterstock_256181956-150x150.jpg" alt="" width="150" height="150" /></a>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="copyright-wrapper">
+                <div class="copyright-container container">
+                    <div class="copyright-left">
+                        <a href="#"><i class="greennature-icon fa fa-facebook" style="vertical-align: middle;color: #bbbbbb;font-size: 20px"></i></a> <a href="#"><i class="greennature-icon fa fa-twitter" style="vertical-align: middle;color: #bbbbbb;font-size: 20px"></i></a> <a href="#"><i class="greennature-icon fa fa-dribbble" style="vertical-align: middle;color: #bbbbbb;font-size: 20px"></i></a> <a href="#"><i class="greennature-icon fa fa-pinterest" style="vertical-align: middle;color: #bbbbbb;font-size: 20px"></i></a> <a href="#"><i class="greennature-icon fa fa-google-plus" style="vertical-align: middle;color: #bbbbbb;font-size: 20px"></i></a> <a href="#"><i class="greennature-icon fa fa-instagram" style="vertical-align: middle;color: #bbbbbb;font-size: 20px"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        </footer>
+        <div>
+
+        
+        <script type='text/javascript' src='js/jquery/jquery.js'></script>
+        <script type='text/javascript' src='js/jquery/jquery-migrate.min.js'></script>
+        <script>
+            var ms_grabbing_curosr = 'plugins/masterslider/public/assets/css/common/grabbing.html',
+                ms_grab_curosr = 'plugins/masterslider/public/assets/css/common/grab.html';
+        </script>
+        <script type='text/javascript' src='plugins/superfish/js/superfish.js'></script>
+        <script type='text/javascript' src='js/hoverIntent.min.js'></script>
+        <script type='text/javascript' src='plugins/dl-menu/modernizr.custom.js'></script>
+        <script type='text/javascript' src='plugins/dl-menu/jquery.dlmenu.js'></script>
+        <script type='text/javascript' src='plugins/jquery.easing.js'></script>
+        <script type='text/javascript' src='plugins/fancybox/jquery.fancybox.pack.js'></script>
+        <script type='text/javascript' src='plugins/fancybox/helpers/jquery.fancybox-media.js'></script>
+        <script type='text/javascript' src='plugins/fancybox/helpers/jquery.fancybox-thumbs.js'></script>
+        <script type='text/javascript' src='plugins/flexslider/jquery.flexslider.js'></script>
+        <script type='text/javascript' src='plugins/jquery.isotope.min.js'></script>
+        <script type='text/javascript' src='js/plugins.js'></script>
+        <script type='text/javascript' src='plugins/masterslider/public/assets/js/masterslider.min.js'></script>
+        <script type='text/javascript' src='plugins/jquery.transit.min.js'></script>
+        <script type='text/javascript' src='plugins/gdlr-portfolio/gdlr-portfolio-script.js'></script>
+        
+        <script>
+            
+        // Get references to elements
+            const submitButton = document.getElementById("submit-button");
+            const feedbackDialog = document.getElementById("feedback-popup");
+            const closeButton = document.getElementById("close-button");
+            const surveyForm = document.getElementById("survey-form");
+            const body = document.querySelector("body");
+        
+            // Function to handle opening the feedback dialog
+            function openFeedbackDialog() {
+                // Show the feedback dialog
+                feedbackDialog.hidden = false;
+                // Create an overlay element
+                const overlay = document.createElement("div");
+                overlay.classList.add("overlay");
+                // Append the overlay to the container of the form
+                surveyForm.parentElement.appendChild(overlay);
+                // Disable scrolling on the body when the dialog is open
+                body.style.overflow = "hidden";
+            }
+        
+            // Function to handle closing the feedback dialog
+            function closeFeedbackDialog() {
+                // Remove the overlay
+                const overlay = document.querySelector(".overlay");
+                if (overlay) {
+                    overlay.remove();
+                }
+                // Close the dialog
+                feedbackDialog.hidden = true;
+                // Re-enable scrolling on the body when the dialog is closed
+                body.style.overflow = "auto";
+                // Reset the form
+            
+            }
+
+
+            function validateForm() {
+                // Check if all required fields are filled
+                const rating1 = document.querySelector('input[name="rating1"]:checked');
+                const rating2 = document.querySelector('input[name="rating2"]:checked');
+                const rating3 = document.querySelector('input[name="rating3"]:checked');
+                const rating4 = document.querySelector('input[name="rating4"]:checked');
+                const feedback = document.querySelector('textarea[name="your_message"]').value;
+
+                // Perform validation
+                if (!rating1 || !rating2 || !rating3 || !rating4 || feedback.trim() === '') {
+                    alert("Please fill out all fields before submitting.");
+                    return false; // Prevent form submission
+                }
+
+                // If all fields are filled, allow form submission
+                return true;
+            }
+        
+        
+            submitButton.addEventListener("click", function() {
+                // Check if the form is valid
+                if (validateForm()) {
+                    openFeedbackDialog();
+                    surveyForm.submit();
+                    
+                } else {
+                    return false;
+                    
+                }
+           
+            });
+        
+            // Add event listener to close button of the dialog
+            closeButton.addEventListener("click", function() {
+                closeFeedbackDialog();
+            });
+        
+            // Apply styles to the feedbackDialog element
+            feedbackDialog.style.border = 'none';
+            feedbackDialog.style.boxShadow = '0 2px 4px rgba(0,0,0,0.3)';
+            feedbackDialog.style.padding = '20px';
+        
+            
+      
+
+    const signOutButton = document.getElementById("sign-out-button");
+
+    // Add a click event listener to the sign-out button
+    signOutButton.addEventListener("click", function() {
+        // Redirect the user to "loginandsignup.php"
+        window.location.href = "loginandsignup.php";
+    });
+
+        
+        
+                
+    </script>
+</html>
+
+       

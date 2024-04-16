@@ -1,0 +1,48 @@
+/* Achievement container styling */
+.achievement-container {
+    background-color: #f8f9fa; /* Light background color */
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+}
+
+/* Title styling */
+.achievement-container h2 {
+    color: #000000; /* Blue title color */
+    margin-bottom: 10px;
+}
+
+/* Description styling */
+.achievement-container p {
+    color: #333; /* Dark text color */
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+/* Button styling */
+.achievement-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #04532484; /* Blue button color */
+    color: #fff; /* Button text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Apply margin only to buttons except the last one */
+.achievement-container button:not(:last-child) {
+    margin-right: 10px;
+}
+
+/* Styles for the last button to prevent margin-right */
+.achievement-container button:last-child {
+    margin-right: 0;
+}
+
+/* Hover effect for buttons */
+.achievement-container button:hover {
+    background-color: #21874db9; /* Darker blue on hover */
+}

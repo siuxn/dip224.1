@@ -1,0 +1,141 @@
+
+
+.homepage_image {
+  background-image: url('Homepage.gif'); /* Corrected */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  height: 600px;
+  width: 1440px;
+
+}
+
+.overlay {
+    position: absolute;
+    left: 0;
+    width: 1440px;
+    height: 600px;
+    background-color: rgba(62, 60, 60, 0.5);
+}
+
+
+.greennature-page-title {
+    position: absolute;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-20%, -50%); 
+    font-weight: bolder;
+    font-size: 70px;
+    width: 100%;
+}
+
+.greennature-page-caption {
+    position: absolute;
+    top: 40%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    font-size: 120%;
+}
+
+
+.Get_Started {
+    position: absolute;
+    top: 70%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    font-size: 16px; 
+    background-color: #267829; 
+    color: white; 
+    border: none;
+    cursor:pointer;
+    padding: 10px 15px;
+    border-radius: 20px;
+}
+
+.Get_Started:hover {
+    background-color: #4e9f51;
+}
+
+
+
+  .goal-section-2 {
+    position: absolute;
+    top: 70%; 
+    width: 1440px;
+
+
+  }
+
+
+
+/* Adjust the title font styles */
+.goal-font {
+    color: #ffffff;
+    font-size: 36px;
+    text-align: center;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+    
+}
+
+/* Adjust the box styles */
+.box {
+  width: 1450px;
+  position: absolute; 
+  top: 35%;
+  left: 50%; 
+  transform: translateY(-50%) translateX(-50%);
+  max-width: 1440px;
+
+ 
+}
+
+
+
+/* Adjust the slide styles */
+.slide1,
+.slide2,
+.slide3,
+.slide4,
+.slide5 {
+    text-align: center; 
+    margin: 30px;
+    background-color: #473926;
+    border: 5px #473926;
+    border-radius: 20px
+  
+}
+
+figure {
+  margin: 0;
+  height: 350px; /* Set a fixed height for all figures */
+}
+
+
+
+/* Adjust the image styles */
+figure img {
+  border: 2px solid white;
+  border-radius: 20px; 
+  margin: 20px auto; 
+  width: 250px;
+  height: 200px;
+
+  
+}
+
+/* Adjust the figcaption styles */
+figcaption {
+    transform: translate(20%);
+    max-width: 200px; /* Set a maximum width for the figcaption */
+    margin-top: 10px;
+    font-size: 16px;
+    color: #ffffff;
+    font-family:Georgia, 'Times New Roman', Times, serif
+}
+  
+
+
+
+  
+  
